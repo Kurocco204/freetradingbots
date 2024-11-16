@@ -1,0 +1,52 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" is_dbot="true" collection="false">
+  <variables>
+    <variable type="" id="BTQ{$u318X:bRnhP(mQ9" islocal="false" iscloud="false">Stop Loss</variable>
+    <variable type="" id="9dQ4tsj$@`vWpu;:2{K=" islocal="false" iscloud="false">Stake</variable>
+  </variables>
+  
+  <block type="variables_set" id="update_stake">
+    <field name="VAR" id="9dQ4tsj$@`vWpu;:2{K=" variabletype="">Stake</field>
+    <value name="VALUE">
+      <block type="math_number" id="stake_value">
+        <field name="NUM">10</field>
+      </block>
+    </value>
+  </block>
+
+  <block type="variables_set" id="update_stop_loss">
+    <field name="VAR" id="BTQ{$u318X:bRnhP(mQ9" variabletype="">Stop Loss</field>
+    <value name="VALUE">
+      <block type="math_number" id="stop_loss_value">
+        <field name="NUM">100</field>
+      </block>
+    </value>
+  </block>
+
+  <block type="controls_if" id="loss_check_block">
+    <mutation elseif="1" else="1"></mutation>
+    <value name="IF0">
+      <block type="logic_compare" id="loss_threshold_check">
+        <field name="OP">GTE</field>
+        <value name="A">
+          <block type="variables_get" id="loss_var">
+            <field name="VAR" id="`=|V?TV%1c6]^Pvh=CK/" variabletype="">Loss</field>
+          </block>
+        </value>
+        <value name="B">
+          <block type="math_number" id="threshold_value">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <statement name="DO0">
+      <block type="text_print" id="pause_message">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">Pausing trading due to consecutive losses.</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>
